@@ -26,6 +26,9 @@ namespace Gamersfable_prototype.Models
         [Required]
         public DateTime Date { get; set; }
 
+        [Required]
+        public int Score { get; set; }
+
         public ApplicationUser Author { get; set; }
     }
 }

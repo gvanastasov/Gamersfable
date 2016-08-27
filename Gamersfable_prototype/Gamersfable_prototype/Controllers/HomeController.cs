@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Gamersfable_prototype.Models;
 
 namespace Gamersfable_prototype.Controllers
 {
@@ -10,7 +11,12 @@ namespace Gamersfable_prototype.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new ApplicationDbContext();
+            var topStories = db.StoriesLibrary.OrderByDescending(x => x.Score)
+                               .Take(3)
+                               .ToList();
+
+            return View(topStories);
         }
 
         public ActionResult About()

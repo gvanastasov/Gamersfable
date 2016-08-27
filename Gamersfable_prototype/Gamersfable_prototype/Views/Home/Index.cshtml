@@ -7,7 +7,6 @@
     <p class="lead">Games are ment to be played, stories are ment to told. Share your experiance with others, or read their adventures from the world of gaming.</p>
     <p><a href='@Url.Action("About","Home")' class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
-
 <section class="row">
     <div class="col-md-4">
         <h2>Join the campfire</h2>
@@ -18,27 +17,22 @@
     </div>
     <div class="col-md-8">
         <h2>Top Ranked Stories</h2>
-        <article class="story">
-            <h3 class="story-title">What is Lorem Ipsum?</h3>
-            <div class="story-body">
-                Published on <strong>Georgi Georgiev (Myst)</strong> on <strong>12-Jun-2016</strong><br />Points: <strong>155,239</strong>
-            </div>
-            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-        </article>
-        <article class="story">
-            <h3 class="story-title">What is Lorem Ipsum?</h3>
-            <div class="story-body">
-                Published on <strong>Georgi Georgiev (Myst)</strong> on <strong>12-Jun-2016</strong><br />Points: <strong>155,239</strong>
-            </div>
-            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-        </article>
-        <article class="story">
-            <h3 class="story-title">What is Lorem Ipsum?</h3>
-            <div class="story-body">
-                Published on <strong>Georgi Georgiev (Myst)</strong> on <strong>12-Jun-2016</strong><br />Points: <strong>155,239</strong>
-            </div>
-            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-        </article>
+        @model List<Gamersfable_prototype.Models.Story>
+        @foreach (var story in Model)
+        {
+            <article class="story">
+                <h3 class="story-title">@story.Title</h3>
+                <div class="story-body">
+                    Published by 
+                    @if (story.Author != null)
+                    {
+                        <strong>@story.Author.FullName</strong>@:(@story.Author.UserName)
+                    } on <strong>@story.Date</strong><br />
+                    Points: <strong>@story.Score</strong>
+                </div>
+                <div>@Html.Raw(story.Body)</div>
+            </article>
+        }
         <p><a class="btn btn-default" href="#">View more &raquo;</a></p>
     </div>
 </section>
