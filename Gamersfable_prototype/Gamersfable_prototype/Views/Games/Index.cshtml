@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Gamersfable_prototype.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+}
+
+<h2>Supported Games</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+    @foreach (var game in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => game.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => game.Description)
+            </td>
+        </tr>
+    }
+</table>
