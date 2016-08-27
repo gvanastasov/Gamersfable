@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Gamersfable_prototype.Models;
+using System.Data.Entity;
 
 namespace Gamersfable_prototype.Controllers
 {
@@ -14,6 +15,7 @@ namespace Gamersfable_prototype.Controllers
             var db = new ApplicationDbContext();
             var topStories = db.StoriesLibrary.OrderByDescending(x => x.Score)
                                .Take(3)
+                               .Include(s => s.Author)
                                .ToList();
 
             return View(topStories);
