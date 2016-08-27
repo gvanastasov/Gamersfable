@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+section .story{
+    background-color: #CCC;
+    margin: 10px 0px;
+    padding: 10px;
+}
