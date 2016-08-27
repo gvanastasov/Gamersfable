@@ -21,14 +21,7 @@ namespace Gamersfable_prototype.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "We are a newly started team - an army of One they say";
 
             return View();
         }
