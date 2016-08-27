@@ -28,3 +28,26 @@ section .story{
     margin: 10px 0px;
     padding: 10px;
 }
+
+#latest{
+    margin: 10px 0px;
+    padding: 0px;
+    background-color: #CCC;
+    list-style: none;
+}
+
+#latest li{
+    margin: 0px 10px;
+    border-bottom: 1px solid black;
+    height: 45px;
+    line-height:45px;
+    vertical-align:middle;
+}
+
+#latest li:last-child{
+    border-bottom: none;
+}
+
+#latest li a{
+    float:right;
+}

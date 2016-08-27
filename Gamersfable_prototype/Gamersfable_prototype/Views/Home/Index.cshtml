@@ -18,9 +18,20 @@
         <p><a class="btn btn-default" href='@Url.Action("Register","Account")'>Register &raquo;</a></p>
         <h2>Lastest 10 Stories</h2>
         <ul id="latest">
-            @foreach (var story in Model.last10)
+
+            @for (int i = 0; i < 10; i++)
             {
-                <li>@story.Title<a class="btn btn-default" href='@Url.Action("Index","Stories")'>Read full &raquo;</a></li>
+                <li>
+                    @if( i < Model.last10.Count - 1 )
+                    {
+                        @Model.last10[i].Title
+                        <a class="btn btn-default" href='@Url.Action("Index","Stories")'>Read full &raquo;</a>
+                    }
+                    else
+                    {
+                        @:-
+                    }
+                </li>
             }
         </ul>
     </div>
