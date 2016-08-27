@@ -1,10 +1,12 @@
-﻿@{
+﻿@using Gamersfable_prototype.Classes;
+@model Gamersfable_prototype.Models.StoriesViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>GAMERSFABLE</h1>
-    <p class="lead">Games are ment to be played, stories are ment to told. Share your experiance with others, or read their adventures from the world of gaming.</p>
+    <p class="lead">Games are ment to be played, stories are ment to be told. Share your experiance with others, or read their adventures from the world of gaming.</p>
     <p><a href='@Url.Action("About","Home")' class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 <section class="row">
@@ -14,11 +16,17 @@
             Become part of this adventure, either as a reader or as a storyteller. Share your experience with others, about the games that you like the most. Choose from a vast number of supported games, vote for adding new ones. Vote for the best story you encounter.
         </p>
         <p><a class="btn btn-default" href='@Url.Action("Register","Account")'>Register &raquo;</a></p>
+        <h2>Lastest 10 Stories</h2>
+        <ul id="latest">
+            @foreach (var story in Model.last10)
+            {
+                <li>@story.Title<a class="btn btn-default" href='@Url.Action("Index","Stories")'>Read full &raquo;</a></li>
+            }
+        </ul>
     </div>
     <div class="col-md-8">
         <h2>Top Ranked Stories</h2>
-        @model List<Gamersfable_prototype.Models.Story>
-        @foreach (var story in Model)
+        @foreach (var story in Model.top3)
         {
             <article class="story">
                 <h3 class="story-title">@story.Title</h3>
@@ -30,9 +38,11 @@
                     } on <strong>@story.Date</strong><br />
                     Points: <strong>@story.Score</strong>
                 </div>
-                <div>@Html.Raw(story.Body)</div>
+                <div>@Html.Raw(Utils.CutText(story.Body, 300))</div>
             </article>
         }
-        <p><a class="btn btn-default" href="#">View more &raquo;</a></p>
+        <div>
+            <a class="btn btn-default" href='@Url.Action("Index","Stories")'>View Rankings &raquo;</a>
+        </div>
     </div>
 </section>

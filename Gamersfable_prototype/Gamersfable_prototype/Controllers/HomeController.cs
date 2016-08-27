@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Gamersfable_prototype.Models;
 using System.Data.Entity;
+using Gamersfable_prototype.Models;
 
 namespace Gamersfable_prototype.Controllers
 {
@@ -13,12 +14,17 @@ namespace Gamersfable_prototype.Controllers
         public ActionResult Index()
         {
             var db = new ApplicationDbContext();
-            var topStories = db.StoriesLibrary.OrderByDescending(x => x.Score)
+            var stories = new StoriesViewModel();
+            stories.top3 = db.StoriesLibrary.OrderByDescending(x => x.Score)
                                .Take(3)
                                .Include(s => s.Author)
                                .ToList();
 
-            return View(topStories);
+            stories.last10 = db.StoriesLibrary.OrderByDescending(x => x.Date)
+                                           .Take(10)
+                                           .ToList();
+
+            return View(stories);
         }
 
         public ActionResult About()
