@@ -9,7 +9,8 @@ namespace Gamersfable_prototype.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<Story> Stories { get; set; }
+        public DbSet<Story> StoriesLibrary { get; set; }
+        public DbSet<Game> GameLibrary { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

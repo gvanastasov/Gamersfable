@@ -86,7 +86,17 @@ namespace Gamersfable_prototype.Migrations
             story.Body = body;
             story.Date = date;
             story.Author = context.Users.Where(u => u.UserName == authorUsername).FirstOrDefault();
-            context.Stories.Add(story);
+            context.StoriesLibrary.Add(story);
+        }
+
+        private void CreateGame(ApplicationDbContext context,
+                                string title,
+                                string description)
+        {
+            var game = new Game();
+            game.Title = title;
+            game.Description = description;
+            context.GameLibrary.Add(game);
         }
     }
 }
