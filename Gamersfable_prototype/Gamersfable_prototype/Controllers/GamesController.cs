@@ -10,6 +10,7 @@ namespace Gamersfable_prototype.Controllers
     public class GamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Games
         public ActionResult Index()
         {
