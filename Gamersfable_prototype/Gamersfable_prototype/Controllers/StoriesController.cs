@@ -27,7 +27,7 @@ namespace Gamersfable_prototype.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.StoriesLibrary.Find(id);
+            Story story = db.StoriesLibrary.Include(s=>s.Author).ToList().Find(x=> x.Id == id);
             if (story == null)
             {
                 return HttpNotFound();

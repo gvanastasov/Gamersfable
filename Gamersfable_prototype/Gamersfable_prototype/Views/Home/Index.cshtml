@@ -22,10 +22,10 @@
             @for (int i = 0; i < 10; i++)
             {
                 <li>
-                    @if( i < Model.last10.Count )
+                    @if (i < Model.last10.Count)
                     {
                         @Model.last10[i].Title
-                        <a class="btn btn-default" href='@Url.Action("Index","Stories")'>Read full &raquo;</a>
+                        <a class="btn btn-default" href='@Url.Action("Details","Stories", new { id = Model.last10[i].Id })'>Read full &raquo;</a>
                     }
                     else
                     {
