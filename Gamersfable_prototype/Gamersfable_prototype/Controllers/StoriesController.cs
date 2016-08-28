@@ -14,10 +14,21 @@ namespace Gamersfable_prototype.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Stories
-        public ActionResult Index()
+        // GET: Stories/Index/guid
+        public ActionResult Index(string id)
         {
-            return View(db.Stories.ToList());
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var stories = db.Stories.Include(s => s.Game).Where(s => s.Game.Id == id).ToList();
+            if (stories == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(stories);
         }
 
         // GET: Stories/Details/5
