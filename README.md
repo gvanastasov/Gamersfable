@@ -24,13 +24,13 @@ Deadline: **30.08.2016**
 **Schedule:**
 
 - [x] Project Idea generation and setup
-- [ ] Class diagrams and DB setup
-- [ ] MVC implementation
-- [ ] Connect DB with MVC through EF
-- [ ] Basic functionality - login, register, view content
+- [x] Class diagrams and DB setup
+- [x] MVC implementation
+- [x] Create basic objects
+- [x] Basic functionality - login, register, view content
 - [ ] CRUD operations
 - [ ] Search engine
-- [ ] Additional features
+- [ ] Additional features? (add them underneath later)
 
 
 - - -
