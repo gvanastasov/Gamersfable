@@ -25,10 +25,7 @@
             <td class="col-md-8">
                 @Html.DisplayFor(modelItem => game.Description)
             </td>
-            <td class="col-md-1">
-                <a class="btn btn-default" href='@Url.Action("Create","Stories")'>Create Story &raquo;</a>
-            </td>
-            <td class="col-md-1">
+            <td class="col-md-2">
                 <a class="btn btn-default" href='@Url.Action("Index","Stories",new { id=game.Id })'>See Other &raquo;</a>
             </td>
         </tr>
