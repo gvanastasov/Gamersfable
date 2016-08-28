@@ -8,8 +8,13 @@ namespace Gamersfable_prototype.Models
 {
     public class Game
     {
+        public Game()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -17,5 +22,7 @@ namespace Gamersfable_prototype.Models
 
         [Required]
         public string Description { get; set; }
+
+        public ICollection<Story> Stories { get; set; }
     }
 }

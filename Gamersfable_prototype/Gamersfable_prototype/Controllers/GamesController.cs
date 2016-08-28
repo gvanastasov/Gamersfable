@@ -14,7 +14,7 @@ namespace Gamersfable_prototype.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.GameLibrary.ToList());
+            return View(db.Games.ToList());
         }
     }
 }

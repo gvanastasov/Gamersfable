@@ -1,7 +1,7 @@
 ﻿@model Gamersfable_prototype.Models.Story
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Story";
 }
 
 <h2>@Html.DisplayFor(model => model.Title)</h2>
@@ -10,29 +10,24 @@
     <h4>by @Html.DisplayFor(model => model.Author.FullName)</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Story
-        </dt>
-
+        <dt>Game</dt>
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.DisplayFor(model => model.Game.Title)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
+        
+        <dt>@Html.DisplayNameFor(model => model.Date)</dt>
         <dd>
             @Html.DisplayFor(model => model.Date)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Score)
-        </dt>
+        <dt>Story</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
 
+        <dt>@Html.DisplayNameFor(model => model.Score)</dt>
         <dd>
             @Html.DisplayFor(model => model.Score)
         </dd>
-
     </dl>
 </div>

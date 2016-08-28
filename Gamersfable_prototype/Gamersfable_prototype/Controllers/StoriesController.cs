@@ -17,7 +17,7 @@ namespace Gamersfable_prototype.Controllers
         // GET: Stories
         public ActionResult Index()
         {
-            return View(db.StoriesLibrary.ToList());
+            return View(db.Stories.ToList());
         }
 
         // GET: Stories/Details/5
@@ -27,7 +27,7 @@ namespace Gamersfable_prototype.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.StoriesLibrary.Include(s=>s.Author).ToList().Find(x=> x.Id == id);
+            Story story = db.Stories.Include(s=>s.Author).Include(s=>s.Game).ToList().Find(x=> x.Id == id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Gamersfable_prototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.StoriesLibrary.Add(story);
+                db.Stories.Add(story);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Gamersfable_prototype.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.StoriesLibrary.Find(id);
+            Story story = db.Stories.Find(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Gamersfable_prototype.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.StoriesLibrary.Find(id);
+            Story story = db.Stories.Find(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Gamersfable_prototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Story story = db.StoriesLibrary.Find(id);
-            db.StoriesLibrary.Remove(story);
+            Story story = db.Stories.Find(id);
+            db.Stories.Remove(story);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
