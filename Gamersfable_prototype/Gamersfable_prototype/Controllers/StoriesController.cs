@@ -49,6 +49,19 @@ namespace Gamersfable_prototype.Controllers
         // GET: Stories/Create
         public ActionResult Create()
         {
+            List<SelectListItem> GameListItems = new List<SelectListItem>();
+
+            foreach (var gameEntity in db.Games.ToList())
+            {
+                GameListItems.Add(new SelectListItem {
+                    Text = gameEntity.Title,
+                    Value = gameEntity.Id
+                });
+            }
+
+            var test = new SelectList(GameListItems, "Value", "Text");
+
+            ViewBag.GameTitles = test;
             return View();
         }
 
