@@ -49,20 +49,9 @@ namespace Gamersfable_prototype.Controllers
         // GET: Stories/Create
         public ActionResult Create()
         {
-            List<SelectListItem> GameListItems = new List<SelectListItem>();
-
-            foreach (var gameEntity in db.Games.ToList())
-            {
-                GameListItems.Add(new SelectListItem {
-                    Text = gameEntity.Title,
-                    Value = gameEntity.Id
-                });
-            }
-
-            var test = new SelectList(GameListItems, "Value", "Text");
-
-            ViewBag.GameTitles = test;
-            return View();
+            var model = new StoryCreateViewModel();
+            model.Games = new SelectList(db.Games, "Id", "Title");
+            return View(model);
         }
 
         // POST: Stories/Create
@@ -70,16 +59,22 @@ namespace Gamersfable_prototype.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Score")] Story story)
+        public ActionResult Create([Bind(Include = "Title,Body,GameID")] StoryCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var story = new Story();
+                story.Title = model.Title;
+                story.Body = model.Body;
+                story.Game_Id = model.GameID;
+                story.Author = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
                 db.Stories.Add(story);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Stories", new { id = story.Id });
             }
 
-            return View(story);
+            return View(model);
         }
 
         // GET: Stories/Edit/5

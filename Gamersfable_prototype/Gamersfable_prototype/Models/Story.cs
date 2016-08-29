@@ -12,6 +12,7 @@ namespace Gamersfable_prototype.Models
         public Story()
         {
             this.Date = DateTime.Now;
+            this.Score = 0;
         }
 
         [Key]
