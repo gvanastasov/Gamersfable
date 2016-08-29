@@ -59,6 +59,7 @@ namespace Gamersfable_prototype.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Title,Body,GameID")] StoryCreateViewModel model)
         {
             if (ModelState.IsValid)
