@@ -47,6 +47,7 @@ namespace Gamersfable_prototype.Controllers
         }
 
         // GET: Stories/Create
+        [Authorize]
         public ActionResult Create()
         {
             var model = new StoryCreateViewModel();
@@ -60,6 +61,7 @@ namespace Gamersfable_prototype.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Title,Body,GameID")] StoryCreateViewModel model)
         {
             if (ModelState.IsValid)
