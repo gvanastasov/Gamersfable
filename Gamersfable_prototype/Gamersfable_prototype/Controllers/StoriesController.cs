@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Gamersfable_prototype.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Gamersfable_prototype.Controllers
 {
@@ -28,6 +29,9 @@ namespace Gamersfable_prototype.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.StoriesGameTitle = db.Games.FirstOrDefault(x => x.Id == id).Title.ToString();
+            ViewBag.UserID = db.Users.FirstOrDefault(u=> u.UserName == User.Identity.Name).Id;
+            
             return View(stories);
         }
 
@@ -83,6 +87,11 @@ namespace Gamersfable_prototype.Controllers
         // GET: Stories/Edit/5
         public ActionResult Edit(int? id)
         {
+            if(User.Identity.GetUserId() != db.Stories.Find(id).Author_Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
