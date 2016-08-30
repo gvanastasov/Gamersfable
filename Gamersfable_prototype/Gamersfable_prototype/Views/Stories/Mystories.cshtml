@@ -24,6 +24,8 @@
             Score
         </th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -42,6 +44,8 @@
                 @Html.DisplayFor(modelItem => item.Score)
             </td>
             <td><a class="btn btn-default" href='@Url.Action("Details","Stories",new { id = item.Id })'>Read &raquo;</a></td>
+            <td><a class="btn btn-default" href='@Url.Action("Edit","Stories",new { id = item.Id })'>Edit &raquo;</a></td>
+            <td><a class="btn btn-default" href='@Url.Action("Delete","Stories",new { id = item.Id })'>Delete &raquo;</a></td>
         </tr>
     }
 

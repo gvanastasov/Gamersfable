@@ -30,4 +30,30 @@ namespace Gamersfable_prototype.Models
 
         public IEnumerable<SelectListItem> Games { get; set; }
     }
+
+    public class StoryEditViewModel
+    {
+        [Required]
+        public int StoryID { get; set; }
+
+        [Required]
+        [StringLength(200)]
+        public string Title { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string Body { get; set; }
+
+        public StoryEditViewModel()
+        {
+
+        }
+
+        public StoryEditViewModel(Story story)
+        {
+            this.StoryID = story.Id;
+            this.Title = story.Title;
+            this.Body = story.Body;
+        }
+    }
 }

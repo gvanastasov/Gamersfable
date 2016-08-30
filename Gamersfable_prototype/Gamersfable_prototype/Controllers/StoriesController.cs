@@ -97,7 +97,10 @@ namespace Gamersfable_prototype.Controllers
             {
                 return HttpNotFound();
             }
-            return View(story);
+
+            StoryEditViewModel model = new StoryEditViewModel(story);
+
+            return View(model);
         }
 
         // POST: Stories/Edit/5
@@ -106,16 +109,20 @@ namespace Gamersfable_prototype.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Title,Body")] Story story)
+        public ActionResult Edit([Bind(Include = "StoryID,Title,Body")] StoryEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                story.Date = DateTime.Now;
+                var story = db.Stories.FirstOrDefault(s => s.Id == model.StoryID);
+
+                story.Title = model.Title;
+                story.Body = model.Body;
+
                 db.Entry(story).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Mystories");
             }
-            return View(story);
+            return View(model);
         }
 
         // GET: Stories/Delete/5
@@ -143,7 +150,7 @@ namespace Gamersfable_prototype.Controllers
             Story story = db.Stories.Find(id);
             db.Stories.Remove(story);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Mystories");
         }
 
         protected override void Dispose(bool disposing)
