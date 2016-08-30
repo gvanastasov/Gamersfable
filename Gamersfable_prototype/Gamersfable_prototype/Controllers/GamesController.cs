@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Gamersfable_prototype.Models;
 using System.Net;
+using System.Data.Entity;
 
 namespace Gamersfable_prototype.Controllers
 {
@@ -25,7 +26,7 @@ namespace Gamersfable_prototype.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var stories = db.Stories.Where(s => s.Game_Id == id);
+            var stories = db.Stories.Where(s => s.Game_Id == id).Include(s => s.Author);
             if (stories == null)
             {
                 return HttpNotFound();
