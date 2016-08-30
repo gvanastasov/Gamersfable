@@ -15,8 +15,15 @@ namespace Gamersfable_prototype.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Stories/Index/guid
-        public ActionResult Index(string id)
+        public ActionResult Index()
+        {
+            var stories = db.Stories.Include(s => s.Game).Include(s => s.Author).OrderByDescending(s => s.Date);
+            return View(stories.ToList());
+        }
+
+        // GET: Stories/Category/GAME_ID
+        [Authorize]
+        public ActionResult Category(string id)
         {
             if(id == null)
             {
@@ -36,6 +43,7 @@ namespace Gamersfable_prototype.Controllers
         }
 
         // GET: Stories/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -85,6 +93,7 @@ namespace Gamersfable_prototype.Controllers
         }
 
         // GET: Stories/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if(User.Identity.GetUserId() != db.Stories.Find(id).Author_Id)
@@ -109,6 +118,7 @@ namespace Gamersfable_prototype.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,Score")] Story story)
         {
             if (ModelState.IsValid)
@@ -121,6 +131,7 @@ namespace Gamersfable_prototype.Controllers
         }
 
         // GET: Stories/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,6 +149,7 @@ namespace Gamersfable_prototype.Controllers
         // POST: Stories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Story story = db.Stories.Find(id);

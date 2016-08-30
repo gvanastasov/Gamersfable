@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Gamersfable_prototype.Models.Story>
 
 @{
-    ViewBag.Title = "Stories";
+    ViewBag.Title = "Index";
 }
 
-<h2>All Stories</h2>
+<h2>@ViewBag.StoriesGameTitle Stories</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,12 +13,6 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Game)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Body)
@@ -38,13 +32,7 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Game.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.FullName)
-        </td>
-        <td>
-            @Gamersfable_prototype.Classes.Utils.CutText(item.Body, 300)
+            @Html.DisplayFor(modelItem => item.Body)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
@@ -52,7 +40,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Score)
         </td>
-        <td><a class="btn btn-default" href='@Url.Action("Details","Stories",new { id = item.Id })'>Read &raquo;</a></td>
+        <td>
+            @if(ViewBag.UserID == item.Author_Id)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })@:|
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })@:|
+            }
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
+        </td>
     </tr>
 }
 
