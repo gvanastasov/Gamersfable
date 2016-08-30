@@ -21,27 +21,6 @@ namespace Gamersfable_prototype.Controllers
             return View(stories.ToList());
         }
 
-        // GET: Stories/Category/GAME_ID
-        [Authorize]
-        public ActionResult Category(string id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var stories = db.Stories.Include(s => s.Game).Where(s => s.Game.Id == id).ToList();
-            if (stories == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.StoriesGameTitle = db.Games.FirstOrDefault(x => x.Id == id).Title.ToString();
-            ViewBag.UserID = db.Users.FirstOrDefault(u=> u.UserName == User.Identity.Name).Id;
-            
-            return View(stories);
-        }
-
         // GET: Stories/Details/5
         [Authorize]
         public ActionResult Details(int? id)
