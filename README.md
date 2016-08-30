@@ -28,9 +28,17 @@ Deadline: **30.08.2016**
 - [x] MVC implementation
 - [x] Create basic objects
 - [x] Basic functionality - login, register, view content
-- [ ] CRUD operations
+- [x] CRUD operations
 - [ ] Search engine
-- [ ] Additional features? (add them underneath later)
+- [x] Additional features? (add them underneath later)
+- [x] Autorization
+- [x] Peruser editing of stories
+- [x] Dropdown list for games selection
+- [x] VMs for creating and editing story (consists of 2 entities)
+- [x] Top3 in Rank
+- [x] Latest 10 in sidebar
+- [x] Game library categorization
+- [ ] Admin rights to CRUD games
 
 
 - - -
