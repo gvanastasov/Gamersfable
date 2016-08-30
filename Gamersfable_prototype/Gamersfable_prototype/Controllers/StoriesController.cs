@@ -71,6 +71,14 @@ namespace Gamersfable_prototype.Controllers
             return View(model);
         }
 
+        [Authorize]
+        public ActionResult Mystories()
+        {
+            var userID = User.Identity.GetUserId();
+            var stories = db.Stories.Where(s => s.Author_Id == userID).Include(s => s.Game);
+            return View(stories.ToList());
+        }
+
         // GET: Stories/Edit/5
         [Authorize]
         public ActionResult Edit(int? id)

@@ -281,6 +281,7 @@
     <Content Include="Views\Games\Category.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Stories\Index.cshtml" />
+    <Content Include="Views\Stories\Mystories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿@model List<Gamersfable_prototype.Models.Story>
+@{
+    ViewBag.Title = "My Stories";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Game
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Score
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td><a class="btn btn-default" href='@Url.Action("Details","Stories",new { id = item.Id })'>Read &raquo;</a></td>
+        </tr>
+    }
+
+</table>
+

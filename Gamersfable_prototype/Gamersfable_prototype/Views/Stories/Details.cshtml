@@ -31,6 +31,6 @@
         </dd>
     </dl>
     <p>
-        @Html.ActionLink("Back", "Index")
+        @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
     </p>
 </div>

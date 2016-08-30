@@ -25,6 +25,10 @@
                     <li>@Html.ActionLink("Games Library", "Index", "Games")</li>
                     <li>@Html.ActionLink("Stories", "Index", "Stories")</li>
                     <li>@Html.ActionLink("Create Story", "Create", "Stories")</li>
+                    @if(Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("My Stories", "Mystories", "Stories")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
