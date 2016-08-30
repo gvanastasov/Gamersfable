@@ -98,10 +98,11 @@ namespace Gamersfable_prototype.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,Score")] Story story)
+        public ActionResult Edit([Bind(Include = "Title,Body")] Story story)
         {
             if (ModelState.IsValid)
             {
+                story.Date = DateTime.Now;
                 db.Entry(story).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
