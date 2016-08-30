@@ -39,6 +39,7 @@ Deadline: **30.08.2016**
 - [x] Latest 10 in sidebar
 - [x] Game library categorization
 - [ ] Admin rights to CRUD games
+- [ ] Color/Pritify the page (no rainbows)
 
 
 - - -
