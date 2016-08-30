@@ -23,6 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model[0].Score)
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -39,11 +40,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Score)
         </td>
+        <td>
+            <a class="btn btn-default" href='@Url.Action("Details","Stories", new { id = item.Id })'>Read full &raquo;</a>
+        </td>
     </tr>
 }
 
 </table>
 
 <p>
-    @Html.ActionLink("To Library","Index", "Games")
+    <a class="btn btn-default" href='@Url.Action("Index","Games")'>Back</a>
 </p>
