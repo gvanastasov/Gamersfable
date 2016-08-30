@@ -278,7 +278,7 @@
     <Content Include="Views\Stories\Delete.cshtml" />
     <Content Include="Views\Stories\Details.cshtml" />
     <Content Include="Views\Stories\Edit.cshtml" />
-    <Content Include="Views\Stories\Category.cshtml" />
+    <Content Include="Views\Games\Category.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Stories\Index.cshtml" />
   </ItemGroup>

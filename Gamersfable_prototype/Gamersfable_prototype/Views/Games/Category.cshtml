@@ -1,0 +1,49 @@
+﻿@model List<Gamersfable_prototype.Models.Story>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.StoriesGameTitle Stories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Stories")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Score)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("To Library","Index", "Games")
+</p>
